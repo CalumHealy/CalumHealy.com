@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Website 1</title>
+	<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+	<nav>
+		<div class="logo">CALUM HEALY</div>
+		<div class="menu-thing">
+			<ul class="nav-items">
+				<li><a href="HomePage.html">Home</a></li>
+				<li>
+					<a href="#">Projects</a>
+					<div class="dropdown">
+						<ul>
+							<li><a href="#">Bikini Bottom Central</a></li>
+							<li><a href="#">Minecraft Ripple Carry Adder</a></li>
+							<li><a href="#">Hello There #2</a></li>
+						</ul>
+					</div>
+				</li>
+				<li><a href="#">Education</a></li>
+			</ul>
+		</div>
+	</nav>
+	<section class="hero">
+		<div class="hero-container">
+			<div class="column-left">
+				<h1>Hello.</h1>
+				<h1>I am Calum Healy.</h1>
+				<p>I am a software development student, studying a four year honours degree in Munster Technological University. </p>
+				<a href="https://www.mtu.ie/courses/mt800/">
+					<button>See Course</button>
+				</a>
+			</div>
+			<div class="column-right">
+				<!-- <p>Right column</p> -->
+				<img class="image_one" src="images\cal_02.png" alt="Cal">
+			</div>
+		</div>
+	</section>
+
+	<section class="expansion-test">
+		<div class="expansion-content">
+			<h1>This Is A Test Of The Expansion Area</h1>
+			<p1>Hello There</p1>
+		</div>
+	</section>
+
+	<script>
+		document.addEventListener('DOMContentLoaded', function() {
+			const menuItem = document.querySelector('.nav-items li:nth-child(2)');
+			const dropdown = document.querySelector('.dropdown');
+			let timeout;
+
+			menuItem.addEventListener('mouseenter', function() {
+				clearTimeout(timeout);
+				menuItem.classList.add('show');
+			});
+
+			menuItem.addEventListener('mouseleave', function() {
+				timeout = setTimeout(function() {
+					menuItem.classList.remove('show');
+				}, 300);
+			});
+
+			dropdown.addEventListener('mouseenter', function() {
+				clearTimeout(timeout);
+			});
+
+			menuItem.querySelectorAll('a, .dropdown').forEach(function(item) {
+				item.addEventListener('mouseenter', function() {
+					clearTimeout(timeout);
+				});
+			});
+		});
+	</script>
+
+
+</body>
+</html>
