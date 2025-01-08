@@ -6,25 +6,29 @@
 }
 
 nav {
-	height: 80px;
+	height: 70px;
 	background: #500000;
 	display: flex;
 	/* justify-content: space-between; */
 	align-items: center;
 	/* padding: 0rem calc((100vw - 1300px) / 2); */
+	padding: 0 1rem;
+	position: relative;
 }
 
 .menu-thing {
 	/* margin-left: auto; */ /* Pushes the menu to the right */
-	margin-left: 0;
+	/* margin-left: 0; */
+	display: none;
 }
 
 .logo {
 	color: #FFFFFF;
-	font-size: 1.5rem;
+	font-size: 1rem;
 	font-weight: bold;
 	font-style: italic;
-	padding: 0 2rem;
+	/* padding: 0 2rem; */
+	margin-right: auto;
 }
 
 .nav-items {
@@ -41,6 +45,83 @@ nav a {
 	text-decoration: none;
 	color: #FFFFFF;
 	padding: 0 1.5rem;
+}
+
+.mobile-menu-button {
+	background: none;
+	border: none;
+	color: white;
+	font-size: 1.5rem;
+	cursor: pointer;
+	display: block;
+}
+
+/* Desktop view (screen width > 768px) */
+@media screen and (min-width: 768px) {
+	.mobile-menu-button {
+        display: none; /* Hide the menu button on desktop */
+    }
+    .menu-thing {
+        display: block; /* Show the full menu on desktop */
+    }
+    .dropdown {
+        display: none;
+    }
+    .nav-items li:hover .dropdown {
+        display: block; /* Show dropdown on hover for desktop */
+    }
+}
+
+/* Mobile view (screen width <= 768px) */
+@media screen and (max-width: 768px) {
+    .menu-thing {
+        display: block;
+        position: absolute;
+        top: 70px;
+        left: 60%;
+        width: 40%;
+        background-color: #400000;
+        text-align: left;
+        display: none; /* Hidden by default */
+    }
+    .menu-thing.show {
+        display: block; /* Show menu when activated */
+    }
+    .nav-items {
+        flex-direction: column;
+        padding: 0;
+    }
+    .nav-items li {
+        margin: 0;
+    }
+    .nav-items li a {
+        padding: 1rem;
+        display: block;
+        width: 100%;
+    }
+    .dropdown {
+        position: relative;
+    }
+    .dropdown ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        display: none;
+    }
+    .dropdown.show ul {
+        display: block;
+    }
+}
+
+/* Remove focus outline and white background on the button */
+.mobile-menu-button {
+    outline: none; /* Remove default focus outline */
+    -webkit-tap-highlight-color: transparent; /* Remove background highlight on touch devices */
+}
+
+.mobile-menu-button:focus {
+    outline: 2px solid #FFD700; /* Add a custom focus style (gold outline) */
+    outline-offset: 2px;
 }
 
 nav a:hover {

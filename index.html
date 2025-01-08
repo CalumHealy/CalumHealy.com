@@ -10,6 +10,7 @@
 
 	<nav>
 		<div class="logo">CALUM HEALY</div>
+		<button class="mobile-menu-button" aria-label="Toggle Menu">☰</button>
 		<div class="menu-thing">
 			<ul class="nav-items">
 				<li><a href="HomePage.html">Home</a></li>
@@ -53,32 +54,48 @@
 	</section>
 
 	<script>
-		document.addEventListener('DOMContentLoaded', function() {
-			const menuItem = document.querySelector('.nav-items li:nth-child(2)');
-			const dropdown = document.querySelector('.dropdown');
-			let timeout;
+		// document.addEventListener('DOMContentLoaded', function() {
+		// 	const menuItem = document.querySelector('.nav-items li:nth-child(2)');
+		// 	const dropdown = document.querySelector('.dropdown');
+		// 	let timeout;
 
-			menuItem.addEventListener('mouseenter', function() {
-				clearTimeout(timeout);
-				menuItem.classList.add('show');
-			});
+		// 	menuItem.addEventListener('mouseenter', function() {
+		// 		clearTimeout(timeout);
+		// 		menuItem.classList.add('show');
+		// 	});
 
-			menuItem.addEventListener('mouseleave', function() {
-				timeout = setTimeout(function() {
-					menuItem.classList.remove('show');
-				}, 300);
-			});
+		// 	menuItem.addEventListener('mouseleave', function() {
+		// 		timeout = setTimeout(function() {
+		// 			menuItem.classList.remove('show');
+		// 		}, 300);
+		// 	});
 
-			dropdown.addEventListener('mouseenter', function() {
-				clearTimeout(timeout);
-			});
+		// 	dropdown.addEventListener('mouseenter', function() {
+		// 		clearTimeout(timeout);
+		// 	});
 
-			menuItem.querySelectorAll('a, .dropdown').forEach(function(item) {
-				item.addEventListener('mouseenter', function() {
-					clearTimeout(timeout);
-				});
-			});
+		// 	menuItem.querySelectorAll('a, .dropdown').forEach(function(item) {
+		// 		item.addEventListener('mouseenter', function() {
+		// 			clearTimeout(timeout);
+		// 		});
+		// 	});
+		// });
+		document.addEventListener('DOMContentLoaded', function () {
+		const mobileMenuButton = document.querySelector('.mobile-menu-button');
+		const menuThing = document.querySelector('.menu-thing');
+		const dropdownParent = document.querySelector('.nav-items li:nth-child(2)');
+
+		// Toggle mobile menu visibility
+		mobileMenuButton.addEventListener('click', function () {
+			menuThing.classList.toggle('show');
 		});
+
+		// Toggle dropdown menu for "Projects"
+		dropdownParent.addEventListener('click', function () {
+			dropdownParent.querySelector('.dropdown').classList.toggle('show');
+		});
+	});
+
 	</script>
 
 
