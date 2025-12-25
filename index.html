@@ -1,104 +1,178 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CalumHealy.com</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CalumHealy.com</title>
 
-  <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
 
   <!-- Navigation -->
-  <nav class="nav">
-    <div class="nav-logo">CALUM HEALY</div>
+    <nav class="nav">
+        <div class="nav-logo">CALUM HEALY</div>
 
-    <!-- <button class="theme-toggle" aria-label="Toggle theme">🌙</button> -->
+        <!-- <button class="theme-toggle" aria-label="Toggle theme">🌙</button> -->
 
-    <button class="nav-toggle" aria-label="Toggle Menu">☰</button>
+        <button class="nav-toggle" aria-label="Toggle Menu">☰</button>
 
-    <ul class="nav-links">
-        <li><button class="theme-toggle" aria-label="Toggle theme">🌙</button></li>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="projects.html">Projects</a></li>
-        <li><a href="photography.html">Photography</a></li>
-        <li><a href="education.html">Education</a></li>
-    </ul>
-  </nav>
+        <ul class="nav-links">
+            <li><button class="theme-toggle" aria-label="Toggle theme">🌙</button></li>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="projects.html">Projects</a></li>
+            <li><a href="photography.html">Photography</a></li>
+            <!-- <li><a href="education.html">Education</a></li> -->
+        </ul>
+    </nav>
 
   <!-- Hero -->
-  <main>
-    <section class="hero">
-      <h1>Welcome to calumhealy.com</h1>
-      <p class="hero-lead">
-        I am a software development graduate. Having earned a Bachelor's of Science degree, I am now looking for work while also taking time to learn new things, particularly in relation to my projects below.
-      </p>
-
-      <p class="hero-sub">
-        This website showcases my projects and ongoing work.
-      </p>
-    </section>
-
-    <!-- Projects Preview -->
-    <section class="section">
-      <h2 class="section-title">Latest Project</h2>
-
-      <article class="card">
-        <h3>DIY Computer</h3>
-
-        <p>
-          I tested having two OR gates (NAND gate combinations) outputting to the
-          same line, feeding into a third OR gate. The behaviour suggested a
-          voltage issue, making the results inconclusive.
+    <main>
+        <section class="hero">
+        <h1>Welcome to calumhealy.com</h1>
+        <p class="hero-lead">
+            I am a software development graduate. Having earned a Bachelor of Science, I am currently looking for work while also taking time to learn new things, particularly in relation to my projects below.
         </p>
 
-        <div class="carousel">
-            <img class="carousel-card" src="images/BufferTest1.jpg" alt="Buffer Test 1">
-            <img class="carousel-card" src="images/BufferTest2.jpg" alt="Buffer Test 2">
-            <img class="carousel-card" src="images/BufferTestCircuitDiagram.png" alt="Circuit Diagram">
-        </div>
+        <p class="hero-sub">
+            This website showcases my projects, ongoing work, and fun things such as my photography.
+        </p>
+        <p class="hero-sub">
+            (This website is currently still under development :) )
+        </p>
+        </section>
 
-        <a class="button" href="diycomputer.html">Read the full story</a>
+        <!-- Projects Preview -->
+        <section class="section">
+        <h2 class="section-title">Latest Projects</h2>
 
-        <div class="card-date">11/01/2025</div>
-      </article>
-    </section>
-  </main>
+        <article class="card">
+            <h3>DIY Computer</h3>
 
-  <script>
-    const toggle = document.querySelector('.nav-toggle');
-    const links = document.querySelector('.nav-links');
+            <p>
+            I tested having two OR gates (NAND gate combinations) outputting to the
+            same line, feeding into a third OR gate. The behaviour suggested a
+            voltage issue, making the results inconclusive.
+            </p>
 
-    toggle.addEventListener('click', () => {
-      links.classList.toggle('show');
-    });
-  </script>
-  <script>
-    const themeToggle = document.querySelector('.theme-toggle');
-    const root = document.documentElement;
+            <!-- <div class="carousel">
+                <img class="carousel-card" src="images/BufferTest1.jpg" alt="Buffer Test 1">
+                <img class="carousel-card" src="images/BufferTest2.jpg" alt="Buffer Test 2">
+                <img class="carousel-card" src="images/BufferTestCircuitDiagram.png" alt="Circuit Diagram">
+            </div> -->
+            <div class="carousel-wrapper">
+                <!-- <button class="carousel-btn prev" aria-label="Previous slide">←</button> -->
+                <button class="carousel-btn prev" aria-label="Previous slide"><</button>
 
-    // Load saved theme or system preference
-    const savedTheme = localStorage.getItem('theme');
-    const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                <div class="carousel" id="carousel">
+                    <div class="carousel-slide">
+                    <img src="images/BufferTest1.jpg" alt="Buffer Test 1">
+                    </div>
+                    <div class="carousel-slide">
+                    <img src="images/BufferTest2.jpg" alt="Buffer Test 2">
+                    </div>
+                    <div class="carousel-slide">
+                    <img src="images/BufferTestCircuitDiagram.png" alt="Circuit Diagram">
+                    </div>
+                </div>
 
-    if (savedTheme) {
-        root.setAttribute('data-theme', savedTheme);
-    } else if (systemDark) {
-        root.setAttribute('data-theme', 'dark');
-    }
+                <!-- <button class="carousel-btn next" aria-label="Next slide">→</button> -->
+                 <button class="carousel-btn next" aria-label="Next slide">></button>
+            </div>
 
-    themeToggle.textContent = root.getAttribute('data-theme') === 'dark' ? '☀️' : '🌙';
+            <div class="carousel-dots" id="carousel-dots"></div>
+
+            <a class="button" href="diycomputer.html">Read the full story</a>
+
+            <div class="card-date">11/01/2025</div>
+        </article>
+        </section>
+    </main>
+
+    <script>
+        const toggle = document.querySelector('.nav-toggle');
+        const links = document.querySelector('.nav-links');
+
+        toggle.addEventListener('click', () => {
+        links.classList.toggle('show');
+        });
+    </script>
+    <script>
+        const themeToggle = document.querySelector('.theme-toggle');
+        const root = document.documentElement;
+
+        // Load saved theme or system preference
+        const savedTheme = localStorage.getItem('theme');
+        const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+        if (savedTheme) {
+            root.setAttribute('data-theme', savedTheme);
+        } else if (systemDark) {
+            root.setAttribute('data-theme', 'dark');
+        }
+
+        themeToggle.textContent = root.getAttribute('data-theme') === 'dark' ? '☀️' : '🌙';
 
 
-    // Toggle theme
-    themeToggle.addEventListener('click', () => {
-        const currentTheme = root.getAttribute('data-theme');
-        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        // Toggle theme
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = root.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
 
-        root.setAttribute('data-theme', newTheme);
-        localStorage.setItem('theme', newTheme);
-        themeToggle.textContent = newTheme === 'dark' ? '☀️' : '🌙';
-    });
+            root.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            themeToggle.textContent = newTheme === 'dark' ? '☀️' : '🌙';
+        });
+    </script>
+
+    <script>
+        const carousel = document.getElementById('carousel');
+        const slides = Array.from(carousel.children);
+        const dotsContainer = document.getElementById('carousel-dots');
+        const prevBtn = document.querySelector('.carousel-btn.prev');
+        const nextBtn = document.querySelector('.carousel-btn.next');
+
+        let currentIndex = 0;
+
+        // Create dots
+        slides.forEach((_, index) => {
+            const dot = document.createElement('button');
+            if (index === 0) dot.classList.add('active');
+            dot.addEventListener('click', () => scrollToSlide(index));
+            dotsContainer.appendChild(dot);
+        });
+
+        const dots = Array.from(dotsContainer.children);
+
+        function scrollToSlide(index) {
+            carousel.scrollTo({
+            left: carousel.clientWidth * index,
+            behavior: 'smooth'
+            });
+            currentIndex = index;
+            updateDots();
+        }
+
+        function updateDots() {
+            dots.forEach(dot => dot.classList.remove('active'));
+            dots[currentIndex].classList.add('active');
+        }
+
+        prevBtn.addEventListener('click', () => {
+            if (currentIndex > 0) scrollToSlide(currentIndex - 1);
+        });
+
+        nextBtn.addEventListener('click', () => {
+            if (currentIndex < slides.length - 1) scrollToSlide(currentIndex + 1);
+        });
+
+        carousel.addEventListener('scroll', () => {
+            const index = Math.round(carousel.scrollLeft / carousel.clientWidth);
+            if (index !== currentIndex) {
+            currentIndex = index;
+            updateDots();
+            }
+        });
     </script>
 
 </body>
