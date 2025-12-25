@@ -184,6 +184,86 @@ body {
   color: var(--text-muted);
 }
 
+.carousel {
+    width: 100%;
+    overflow-x: auto;
+    margin: 3em auto;
+    display: flex;
+    gap: 1em;
+    scroll-behavior: smooth;
+    anchor-name: --carousel;
+    scroll-snap-type: x mandatory;
+    scroll-marker-group: after;
+}
+
+.carousel::scroll-marker-group {
+    display: flex;
+    justify-content: center;
+    gap: 0.5em;
+}
+
+.carousel-card::scroll-marker {
+    content: "O";
+    height: 1em;
+    width: 2em;
+    background-color: var(--text-muted);
+    border-radius: 50%;
+    text-align: center;
+}
+
+.carousel-card::scroll-marker:target-current {
+    background-color: var(--text);
+}
+
+.carousel::-webkit-scrollbar {
+    display: none;
+}
+
+.carousel::scroll-button(right), .carousel::scroll-button(left) {
+    border: none;
+    background-color: var(--button-bg);
+    font-family: Consolas;
+    font-size: 3rem;
+    color: #ffffff;
+    height: 60px;
+    width: 60px;
+    border-radius: 50%;
+    padding-bottom: 0.1em;
+    cursor: pointer;
+    position: fixed;
+    position-anchor: --carousel;
+}
+
+.carousel::scroll-button(right) {
+    content: "→";
+    position-area: right center;
+    translate: -50%;
+}
+
+.carousel::scroll-button(left) {
+    content: "←";
+    position-area: left center;
+    translate: 50%;
+}
+
+.carousel::scroll-button(right):disabled, .carousel::scroll-button(left):disabled {
+    opacity: 0.5;
+    cursor: auto;
+}
+
+.carousel-card {
+    scroll-snap-align: center;
+    max-height: 30em;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    background-color: red;
+    padding: 1em;
+    border-radius: 0.5em;
+    text-align: center;
+    align-content: center;
+}
+
 /* ===== Buttons ===== */
 .button {
   display: inline-block;
