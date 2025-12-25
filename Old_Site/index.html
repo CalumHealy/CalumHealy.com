@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>CalumHealy.com</title>
+	<meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate, post-check=0, pre-check=0">
+	<meta http-equiv="Pragma" content="no-cache">
+	<meta http-equiv="Expires" content="0">
+	<link rel="stylesheet" href="stylesThree.css" />
+</head>
+<body>
+
+	<nav>
+		<div class="logo">CALUM HEALY</div>
+		<button class="mobile-menu-button" aria-label="Toggle Menu">☰</button>
+		<div class="menu-thing">
+			<ul class="nav-items">
+				<li><a href="index.html">Home</a></li>
+				<li><a href="projects.html">Projects</a></li>
+				<li><a href="photography.html">Photography</a></li>
+				<li><a href="education.html">Education</a></li>
+			</ul>
+		</div>
+	</nav>
+	<section class="hero">
+		<div class="index_title"><h1>Welcome to calumhealy.com</h1></div>
+		<div class="introduction_text"><p>I am a software development student, studying a four year honours degree in Munster Technological University. I have a passion for computer science in general, especially low-level logic and programming, graphics, and physics simulation. </p></div>
+		<div class="preview_intro_text"><p1>The purpose of this website is to showcase my projects. Below you can see my latest updates, and you can see everything in the projects page, linked in the nav menu. </p1></div>
+		<div class="projects_preview">
+			<div class="list-item">
+				<h2>DIY Computer</h2>
+				<p1>I tested having two OR gates (NAND gate combinations) outputting to the same line, feeding into a third OR gate. As you can see in the images, only the inputs of the second gate are on, but the outputs of both gates are on. This is the setup for the test. Neither input LED for the first gate is on. However, the final output LED does not turn on all the time, but only when both of its inputs are on. This suggests a voltage issue, which is also seen in the dim first output LED. The rough circuit diagram is shown (simulated in Logisim). This test will need to be redone or redesigned, as the results from this setup were inconclusive. </p1>
+				<img class="news_image_1" src="images/BufferTest1.jpg" alt="BufferTest">
+				<img class="news_image_1" src="images/BufferTest2.jpg" alt="BufferTest">
+				<img class="news_image_1" src="images/BufferTestCircuitDiagram.png" alt="BufferTestCircuitDiagram">
+				<div class="blog-link"><a href="diycomputer.html">Read the full story here</a></div>
+				<p1 class="project_item_date">11/1/2025</p1>
+			</div>
+		</div>
+	</section>
+
+	<script>
+		document.addEventListener('DOMContentLoaded', function () {
+		const mobileMenuButton = document.querySelector('.mobile-menu-button');
+		const menuThing = document.querySelector('.menu-thing');
+		const dropdownParent = document.querySelector('.nav-items li:nth-child(2)');
+
+		// Toggle mobile menu visibility
+		mobileMenuButton.addEventListener('click', function (event) {
+			menuThing.classList.toggle('show');
+			event.stopPropagation();
+		});
+
+		// Toggle dropdown menu for "Projects"
+		dropdownParent.addEventListener('click', function (event) {
+			// dropdownParent.querySelector('.dropdown').classList.toggle('show');
+			const dropdown = dropdownParent.querySelector('.dropdown');
+			dropdown.classList.toggle('show');
+			event.stopPropagation();
+		});
+
+		// Close dropdowns when clicking outside
+		document.addEventListener('click', function (event) {
+			const isClickInsideMenu = menuThing.contains(event.target);
+			const isClickInsideButton = mobileMenuButton.contains(event.target);
+			if (!isClickInsideMenu && !isClickInsideButton) {
+				menuThing.classList.remove('show');
+			}
+			const dropdown = dropdownParent.querySelector('.dropdown');
+			if (!dropdownParent.contains(event.target)) {
+				dropdown.classList.remove('show');
+			}
+		})
+	});
+
+	</script>
+
+
+</body>
+</html>

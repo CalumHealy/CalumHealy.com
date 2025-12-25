@@ -1,0 +1,215 @@
+:root {
+  --bg: #ffffff;
+  --bg-alt: #f5f5f5;
+  --card-bg: #ffffff;
+  --nav-bg: #101010;
+  --text: #222;
+  --text-muted: #555;
+  --accent: #4499FF;
+  --button-bg: #101010;
+}
+
+[data-theme="dark"] {
+  --bg: #252525;
+  --bg-alt: #202020;
+  --card-bg: #151515;
+  --nav-bg: #101010;
+  --text: #e6e6e6;
+  --text-muted: #888;
+  --button-bg: #080808;
+}
+
+/* ===== Base ===== */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  /* background: #252525; */
+  background: var(--bg);
+  /* color: #ffffff; */
+  /* color: #e6e6e6; */
+  color: var(--text);
+  line-height: 1.6;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+/* ===== Navigation ===== */
+.nav {
+  height: 70px;
+  /* background: #101010; */
+  background: var(--nav-bg);
+  color: white;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 0 1.5rem;
+}
+
+.nav-logo {
+  font-weight: bold;
+  font-style: italic;
+}
+
+.nav-toggle {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.nav-links {
+  list-style: none;
+  display: none;
+  position: absolute;
+  top: 70px;
+  right: 0;
+  background: #151515;
+  width: 200px;
+}
+
+.nav-links li a {
+  display: block;
+  padding: 1rem;
+  color: #ddd;
+  text-decoration: none;
+}
+
+.nav-links li a:hover {
+  color: #4499FF;
+}
+
+.nav-links.show {
+  display: block;
+}
+
+/* Desktop nav */
+@media (min-width: 768px) {
+  .nav-toggle {
+    display: none;
+  }
+
+  .nav-links {
+    position: static;
+    display: flex;
+    width: auto;
+    background: none;
+  }
+
+  .nav-links li a {
+    padding: 0 1rem;
+  }
+}
+
+/* ===== Hero ===== */
+.hero {
+  max-width: 900px;
+  margin: 4rem auto;
+  padding: 0 1rem;
+  text-align: center;
+}
+
+.hero h1 {
+  font-size: 3rem;
+  /* color: #4499FF; */
+  /* color: #fff; */
+  color: var(--text);
+  margin-bottom: 1rem;
+}
+
+.hero-lead {
+  font-size: 1.25rem;
+  margin-bottom: 1rem;
+}
+
+.hero-sub {
+  /* color: #ffffff; */
+  color: var(--text);
+}
+
+/* ===== Sections ===== */
+.section {
+  max-width: 1000px;
+  margin: 0 auto 4rem;
+  padding: 0 1rem;
+}
+
+.section-title {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 2rem;
+}
+
+/* ===== Cards ===== */
+.card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* background: #151515; */
+    background: var(--card-bg);
+    border-radius: 10px;
+    margin: 0 auto;
+    padding: 2rem;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+.card h3 {
+  margin-bottom: 1rem;
+}
+
+.card p {
+  margin-bottom: 1.5rem;
+}
+
+.card img {
+    display: block;
+    max-width: 75%;
+    margin: 1rem 0;
+    border-radius: 6px;
+    background: #000;
+    padding: 4px;
+}
+
+.card-date {
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  /* color: #888; */
+  color: var(--text-muted);
+}
+
+/* ===== Buttons ===== */
+.button {
+  display: inline-block;
+  margin-top: 1.5rem;
+  padding: 0.75rem 1.5rem;
+  /* background: #080808; */
+  background: var(--button-bg);
+  color: white;
+  text-decoration: none;
+  border-radius: 6px;
+  font-weight: bold;
+}
+
+.button:hover {
+  background: #252525;
+}
+
+.theme-toggle {
+  background: none;
+  border: none;
+  color: var(--text);
+  font-size: 1.2rem;
+  cursor: pointer;
+  margin-left: 1rem;
+}
+
+.theme-toggle:hover {
+  color: var(--accent);
+}

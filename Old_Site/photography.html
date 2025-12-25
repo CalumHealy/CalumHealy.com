@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>CalumHealy.com</title>
+	<meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate, post-check=0, pre-check=0">
+	<meta http-equiv="Pragma" content="no-cache">
+	<meta http-equiv="Expires" content="0">
+	<link rel="stylesheet" href="stylesThree.css" />
+</head>
+<body>
+	<style>
+		body {
+			/* background-color: #888; */
+			background-color: #53636e;
+		}
+	</style>
+    <nav>
+		<div class="logo">CALUM HEALY</div>
+		<button class="mobile-menu-button" aria-label="Toggle Menu">☰</button>
+		<div class="menu-thing">
+			<ul class="nav-items">
+				<li><a href="index.html">Home</a></li>
+				<li><a href="projects.html">Projects</a></li>
+				<li><a href="photography.html">Photography</a></li>
+				<li><a href="education.html">Education</a></li>
+			</ul>
+		</div>
+	</nav>
+
+    <section class="hero">
+		<div class="photography_intro">
+			<h1>Photography</h1>
+			<p>For a few years now I've been very interested in photography. I loved taking pictures of anything and everything on my phone, but I wanted something better. I upgraded and bought myself a Nikon D3300, and I am absolutely delighted I finally did. I brought it on holiday with me in August 2025 and I got some amazing photos which you can see below, along with photos from different events and days. </p>
+		</div>
+
+		<div class="my_favourite_photos">
+			<p>Here are some of my favourite photos that I have taken since I bought my camera. </p>
+			<div class="photo_container">
+				<a href="images/DSC_0304.jpg"><img src="images/DSC_0304.jpg" alt="VK_Logo" width="300px" height=auto></a>
+				<div class="photo_description">
+					<p>The Volkswagen logo on the back of my 2010 Passat B6. Camera settings: f4.8, 1/40 sec, ISO-400, 85mm</p>
+				</div>
+			</div>
+			<div class="photo_container">
+				<div class="photo_description">
+					<p>Just a simple shot of the front of my car. Camera settings: f4.8, 1/40 sec, ISO-400, 130mm</p>
+				</div>
+				<a href="images/DSC_0296.jpg"><img src="images/DSC_0296.jpg" alt="Front_of_car" width="500px" height=auto></a>
+			</div>
+			<div class="photo_container">
+				<a href="images/DSC_0302.jpg"><img src="images/DSC_0302.jpg" alt="VK_Logo" width="500px" height=auto></a>
+				<div class="photo_description">
+					<p>Nice reflections in the side of the car, playing with the focal length. Camera settings: f4.8, 1/60 sec, ISO-400, 90mm</p>
+				</div>
+			</div>
+			<div class="photo_container">
+				<div class="photo_description">
+					<p>Head on view of the alloy commonly found on Passat CCs on the era. Camera settings: f4.8, 1/40 sec, ISO-400, 98mm</p>
+				</div>
+				<a href="images/DSC_0305.jpg"><img src="images/DSC_0305.jpg" alt="VK_Logo" width="300px" height=auto></a>
+			</div>
+		</div>
+	</section>
+
+    <div class="home-button">
+		<a href="index.html"><button class="photography-page-nav-button">Back To Home</button></a>
+	</div>
+
+    <script>
+		document.addEventListener('DOMContentLoaded', function () {
+		const mobileMenuButton = document.querySelector('.mobile-menu-button');
+		const menuThing = document.querySelector('.menu-thing');
+		const dropdownParent = document.querySelector('.nav-items li:nth-child(2)');
+
+		// Toggle mobile menu visibility
+		mobileMenuButton.addEventListener('click', function (event) {
+			menuThing.classList.toggle('show');
+			event.stopPropagation();
+		});
+
+		// Toggle dropdown menu for "Projects"
+		dropdownParent.addEventListener('click', function (event) {
+			// dropdownParent.querySelector('.dropdown').classList.toggle('show');
+			const dropdown = dropdownParent.querySelector('.dropdown');
+			dropdown.classList.toggle('show');
+			event.stopPropagation();
+		});
+
+		// Close dropdowns when clicking outside
+		document.addEventListener('click', function (event) {
+			const isClickInsideMenu = menuThing.contains(event.target);
+			const isClickInsideButton = mobileMenuButton.contains(event.target);
+			if (!isClickInsideMenu && !isClickInsideButton) {
+				menuThing.classList.remove('show');
+			}
+			const dropdown = dropdownParent.querySelector('.dropdown');
+			if (!dropdownParent.contains(event.target)) {
+				dropdown.classList.remove('show');
+			}
+		})
+	});
+
+	</script>
+</body>
+</html>

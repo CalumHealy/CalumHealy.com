@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>CalumHealy.com</title>
+	<meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate, post-check=0, pre-check=0">
+	<meta http-equiv="Pragma" content="no-cache">
+	<meta http-equiv="Expires" content="0">
+	<link rel="stylesheet" href="stylesThree.css" />
+</head>
+<body>
+    <nav>
+		<div class="logo">CALUM HEALY</div>
+		<button class="mobile-menu-button" aria-label="Toggle Menu">☰</button>
+		<div class="menu-thing">
+			<ul class="nav-items">
+				<li><a href="index.html">Home</a></li>
+				<li><a href="projects.html">Projects</a></li>
+				<li><a href="photography.html">Photography</a></li>
+				<li><a href="education.html">Education</a></li>
+			</ul>
+		</div>
+	</nav>
+
+    <section class="hero">
+		<div class="project_intro">
+			<h1>Projects</h1>
+			<p>I'm interested in multiple areas of computer science, reflected in my projects. There is web dev (this website), computer architecture, computer graphics (especially ray tracing and path tracing). Below you can see some of the projects I am working on. </p>
+		</div>
+
+		<div class="projects-list">
+			<div class="story-item">
+				<h2>DIY Computer</h2>
+				<p1>I tested having two OR gates (NAND gate combinations) outputting to the same line, feeding into a third OR gate. As you can see in the images, only the inputs of the second gate are on, but the outputs of both gates are on. This is the setup for the test. Neither input LED for the first gate is on. However, the final output LED does not turn on all the time, but only when both of its inputs are on. This suggests a voltage issue, which is also seen in the dim first output LED. The rough circuit diagram is shown (simulated in Logisim). This test will need to be redone or redesigned, as the results from this setup were inconclusive. </p1>
+				<img class="news_image_1" src="images/BufferTest1.jpg" alt="BufferTest">
+				<img class="news_image_1" src="images/BufferTest2.jpg" alt="BufferTest">
+				<img class="news_image_1" src="images/BufferTestCircuitDiagram.png" alt="BufferTestCircuitDiagram">
+				<div class="blog-link"><a href="diycomputer.html">Read the full story here</a></div>
+				<p1>11/1/2025</p1>
+			</div>
+
+			<div class="story-item">
+				<h2>Path Tracing Engine</h2>
+				<p>Coming Soon...</p>
+				<p>This will hopefully feature a graphics API allowing it to run as an application with a UI. It will be built using C++. </p>
+				<p1>1/4/2025</p1>
+			</div>
+		</div>
+	</section>
+
+    <div class="home-button">
+		<a href="index.html"><button class="project-page-nav-button">Back To Home</button></a>
+	</div>
+
+    <script>
+		document.addEventListener('DOMContentLoaded', function () {
+		const mobileMenuButton = document.querySelector('.mobile-menu-button');
+		const menuThing = document.querySelector('.menu-thing');
+		const dropdownParent = document.querySelector('.nav-items li:nth-child(2)');
+
+		// Toggle mobile menu visibility
+		mobileMenuButton.addEventListener('click', function (event) {
+			menuThing.classList.toggle('show');
+			event.stopPropagation();
+		});
+
+		// Toggle dropdown menu for "Projects"
+		dropdownParent.addEventListener('click', function (event) {
+			// dropdownParent.querySelector('.dropdown').classList.toggle('show');
+			const dropdown = dropdownParent.querySelector('.dropdown');
+			dropdown.classList.toggle('show');
+			event.stopPropagation();
+		});
+
+		// Close dropdowns when clicking outside
+		document.addEventListener('click', function (event) {
+			const isClickInsideMenu = menuThing.contains(event.target);
+			const isClickInsideButton = mobileMenuButton.contains(event.target);
+			if (!isClickInsideMenu && !isClickInsideButton) {
+				menuThing.classList.remove('show');
+			}
+			const dropdown = dropdownParent.querySelector('.dropdown');
+			if (!dropdownParent.contains(event.target)) {
+				dropdown.classList.remove('show');
+			}
+		})
+	});
+
+	</script>
+</body>
+</html>

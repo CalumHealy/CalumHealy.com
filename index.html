@@ -1,93 +1,103 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>CalumHealy.com</title>
-	<meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate, post-check=0, pre-check=0">
-	<meta http-equiv="Pragma" content="no-cache">
-	<meta http-equiv="Expires" content="0">
-	<link rel="stylesheet" href="stylesThree.css" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CalumHealy.com</title>
+
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
 
-	<nav>
-		<div class="logo">CALUM HEALY</div>
-		<button class="mobile-menu-button" aria-label="Toggle Menu">☰</button>
-		<div class="menu-thing">
-			<ul class="nav-items">
-				<li><a href="index.html">Home</a></li>
-				<li><a href="projects.html">Projects</a></li>
-				<li><a href="education.html">Education</a></li>
-			</ul>
-		</div>
-	</nav>
-	<section class="hero">
-		<div class="hero-container">
-			<div class="column-left">
-				<!-- <h1>Hello</h1>
-				<h1>I am Calum Healy</h1> -->
-				<div class="index_title"><h1>Welcome to calumhealy.com</h1></div>
-				<p>I am a software development student, studying a four year honours degree in Munster Technological University. I have a passion for computer science in general, especially low-level logic and programming, graphics, and physics simulation. </p>
-				<!-- <a href="https://www.mtu.ie/courses/mt800/">
-					<button>See Course</button>
-				</a> -->
-			</div>
-			<!-- <div class="column-right"> -->
-				<!-- <p>Right column</p> -->
-				<!-- <img class="image_one" src="images\cal_03.png" alt="Cal">
-			</div> -->
-		</div>
-		<div class="projects-preview">
-			<p1>The purpose of this website is to showcase my projects. Below you can see my latest updates, and you can see everything in the projects page, linked in the nav menu. </p1>
-			<div class="list-item">
-				<h2>DIY Computer</h2>
-				<p1>I tested having two OR gates (NAND gate combinations) outputting to the same line, feeding into a third OR gate. As you can see in the images, only the inputs of the second gate are on, but the outputs of both gates are on. This is the setup for the test. Neither input LED for the first gate is on. However, the final output LED does not turn on all the time, but only when both of its inputs are on. This suggests a voltage issue, which is also seen in the dim first output LED. The rough circuit diagram is shown (simulated in Logisim). This test will need to be redone or redesigned, as the results from this setup were inconclusive. </p1>
-				<img class="news_image_1" src="images/BufferTest1.jpg" alt="BufferTest">
-				<img class="news_image_1" src="images/BufferTest2.jpg" alt="BufferTest">
-				<img class="news_image_1" src="images/BufferTestCircuitDiagram.png" alt="BufferTestCircuitDiagram">
-				<div class="blog-link"><a href="diycomputer.html">Read the full story here</a></div>
-				<p1>11/1/2025</p1>
-			</div>
-		</div>
-	</section>
+  <!-- Navigation -->
+  <nav class="nav">
+    <div class="nav-logo">CALUM HEALY</div>
 
-	<script>
-		document.addEventListener('DOMContentLoaded', function () {
-		const mobileMenuButton = document.querySelector('.mobile-menu-button');
-		const menuThing = document.querySelector('.menu-thing');
-		const dropdownParent = document.querySelector('.nav-items li:nth-child(2)');
+    <!-- <button class="theme-toggle" aria-label="Toggle theme">🌙</button> -->
 
-		// Toggle mobile menu visibility
-		mobileMenuButton.addEventListener('click', function (event) {
-			menuThing.classList.toggle('show');
-			event.stopPropagation();
-		});
+    <button class="nav-toggle" aria-label="Toggle Menu">☰</button>
 
-		// Toggle dropdown menu for "Projects"
-		dropdownParent.addEventListener('click', function (event) {
-			// dropdownParent.querySelector('.dropdown').classList.toggle('show');
-			const dropdown = dropdownParent.querySelector('.dropdown');
-			dropdown.classList.toggle('show');
-			event.stopPropagation();
-		});
+    <ul class="nav-links">
+        <li><button class="theme-toggle" aria-label="Toggle theme">🌙</button></li>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="photography.html">Photography</a></li>
+        <li><a href="education.html">Education</a></li>
+    </ul>
+  </nav>
 
-		// Close dropdowns when clicking outside
-		document.addEventListener('click', function (event) {
-			const isClickInsideMenu = menuThing.contains(event.target);
-			const isClickInsideButton = mobileMenuButton.contains(event.target);
-			if (!isClickInsideMenu && !isClickInsideButton) {
-				menuThing.classList.remove('show');
-			}
-			const dropdown = dropdownParent.querySelector('.dropdown');
-			if (!dropdownParent.contains(event.target)) {
-				dropdown.classList.remove('show');
-			}
-		})
-	});
+  <!-- Hero -->
+  <main>
+    <section class="hero">
+      <h1>Welcome to calumhealy.com</h1>
+      <p class="hero-lead">
+        I am a software development graduate. Having earned a Bachelor's of Science degree, I am now looking for work while also taking time to learn new things, particularly in relation to my projects below.
+      </p>
 
-	</script>
+      <p class="hero-sub">
+        This website showcases my projects and ongoing work.
+      </p>
+    </section>
 
+    <!-- Projects Preview -->
+    <section class="section">
+      <h2 class="section-title">Latest Project</h2>
+
+      <article class="card">
+        <h3>DIY Computer</h3>
+
+        <p>
+          I tested having two OR gates (NAND gate combinations) outputting to the
+          same line, feeding into a third OR gate. The behaviour suggested a
+          voltage issue, making the results inconclusive.
+        </p>
+
+        <img src="images/BufferTest1.jpg" alt="Buffer Test 1">
+        <img src="images/BufferTest2.jpg" alt="Buffer Test 2">
+        <img src="images/BufferTestCircuitDiagram.png" alt="Circuit Diagram">
+
+        <a class="button" href="diycomputer.html">Read the full story</a>
+
+        <div class="card-date">11/01/2025</div>
+      </article>
+    </section>
+  </main>
+
+  <script>
+    const toggle = document.querySelector('.nav-toggle');
+    const links = document.querySelector('.nav-links');
+
+    toggle.addEventListener('click', () => {
+      links.classList.toggle('show');
+    });
+  </script>
+  <script>
+    const themeToggle = document.querySelector('.theme-toggle');
+    const root = document.documentElement;
+
+    // Load saved theme or system preference
+    const savedTheme = localStorage.getItem('theme');
+    const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+    if (savedTheme) {
+        root.setAttribute('data-theme', savedTheme);
+    } else if (systemDark) {
+        root.setAttribute('data-theme', 'dark');
+    }
+
+    themeToggle.textContent = root.getAttribute('data-theme') === 'dark' ? '☀️' : '🌙';
+
+
+    // Toggle theme
+    themeToggle.addEventListener('click', () => {
+        const currentTheme = root.getAttribute('data-theme');
+        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+
+        root.setAttribute('data-theme', newTheme);
+        localStorage.setItem('theme', newTheme);
+        themeToggle.textContent = newTheme === 'dark' ? '☀️' : '🌙';
+    });
+    </script>
 
 </body>
 </html>
