@@ -44,7 +44,35 @@
 
         <!-- Projects Preview -->
         <section class="section">
-        <h2 class="section-title">Latest Projects</h2>
+        <h2 class="section-title">Latest Project Updates</h2>
+
+        <article class="card">
+            <h3>CPU Path Tracer</h3>
+
+            <p>
+            I am changing the structure of the config file to reflect the structure and logic of the code. SCENE now contains VERTICES, NORMALS, TRIANGLES, and MATERIALS. CAMERA will be a separate field with POSITION, FORWARD, RIGHT, and UP fields. FOV is a separate parameter at the start with WIDTH and HEIGHT.
+            </p>
+            <div class="carousel-wrapper">
+                <button class="carousel-btn prev" aria-label="Previous slide"><</button>
+
+                <div class="carousel">
+                    <div class="carousel-slide">
+                    <img src="images/CPU_Path_Tracer_Update_1_Image_1.png" alt="Before">
+                    </div>
+                    <div class="carousel-slide">
+                    <img src="images/CPU_Path_Tracer_Update_1_Image_2.png" alt="After">
+                    </div>
+                </div>
+
+                 <button class="carousel-btn next" aria-label="Next slide">></button>
+            </div>
+
+            <div class="carousel-dots"></div>
+
+            <a class="button" href="cpu_path_tracer.html.html">Read the full story</a>
+
+            <div class="card-date">18/12/2025</div>
+        </article>
 
         <article class="card">
             <h3>DIY Computer</h3>
@@ -55,16 +83,10 @@
             voltage issue, making the results inconclusive.
             </p>
 
-            <!-- <div class="carousel">
-                <img class="carousel-card" src="images/BufferTest1.jpg" alt="Buffer Test 1">
-                <img class="carousel-card" src="images/BufferTest2.jpg" alt="Buffer Test 2">
-                <img class="carousel-card" src="images/BufferTestCircuitDiagram.png" alt="Circuit Diagram">
-            </div> -->
             <div class="carousel-wrapper">
-                <!-- <button class="carousel-btn prev" aria-label="Previous slide">←</button> -->
                 <button class="carousel-btn prev" aria-label="Previous slide"><</button>
 
-                <div class="carousel" id="carousel">
+                <div class="carousel">
                     <div class="carousel-slide">
                     <img src="images/BufferTest1.jpg" alt="Buffer Test 1">
                     </div>
@@ -76,11 +98,10 @@
                     </div>
                 </div>
 
-                <!-- <button class="carousel-btn next" aria-label="Next slide">→</button> -->
                  <button class="carousel-btn next" aria-label="Next slide">></button>
             </div>
 
-            <div class="carousel-dots" id="carousel-dots"></div>
+            <div class="carousel-dots"></div>
 
             <a class="button" href="diycomputer.html">Read the full story</a>
 
@@ -89,6 +110,7 @@
         </section>
     </main>
 
+    <!-- Nav button JS -->
     <script>
         const toggle = document.querySelector('.nav-toggle');
         const links = document.querySelector('.nav-links');
@@ -97,6 +119,8 @@
         links.classList.toggle('show');
         });
     </script>
+
+    <!-- Light/Dark toggle JS -->
     <script>
         const themeToggle = document.querySelector('.theme-toggle');
         const root = document.documentElement;
@@ -125,12 +149,14 @@
         });
     </script>
 
+    <!-- Carousel JS -->
     <script>
-        const carousel = document.getElementById('carousel');
+        document.querySelectorAll('.card').forEach(card => {
+        const carousel = card.querySelector('.carousel');
         const slides = Array.from(carousel.children);
-        const dotsContainer = document.getElementById('carousel-dots');
-        const prevBtn = document.querySelector('.carousel-btn.prev');
-        const nextBtn = document.querySelector('.carousel-btn.next');
+        const dotsContainer = card.querySelector('.carousel-dots');
+        const prevBtn = card.querySelector('.carousel-btn.prev');
+        const nextBtn = card.querySelector('.carousel-btn.next');
 
         let currentIndex = 0;
 
@@ -155,7 +181,7 @@
 
         function updateDots() {
             dots.forEach(dot => dot.classList.remove('active'));
-            dots[currentIndex].classList.add('active');
+            dots[currentIndex]?.classList.add('active');
         }
 
         prevBtn.addEventListener('click', () => {
@@ -172,6 +198,7 @@
             currentIndex = index;
             updateDots();
             }
+        });
         });
     </script>
 
