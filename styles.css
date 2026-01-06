@@ -257,9 +257,14 @@ body {
 /* Dots */
 .carousel-dots {
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
+  align-items: center;
   gap: 0.75rem;
   margin-top: 1rem;
+  max-width: 100%;
+  padding: 0 1rem;
+  box-sizing: border-box;
 }
 
 .carousel-dots button {
