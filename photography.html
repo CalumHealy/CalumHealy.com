@@ -56,16 +56,28 @@
                 <button class="carousel-btn prev" aria-label="Previous slide"><</button>
 
                 <div class="carousel">
-                    <div class="carousel-slide">
+                    <!-- <div class="carousel-slide">
                         <img src="images/Holiday1.jpg">
-                    </div>
-                    <div class="carousel-slide">
+                    </div> -->
+                    <a class="carousel-slide" href="images/Full_Res/Holiday1.jpg" data-full="images/Full_Res/Holiday1.jpg">
+                        <img src="images/Thumbnails/Holiday1.jpg" alt="Holiday 1" loading="lazy" decoding="async">
+                    </a>
+
+                    <!-- <div class="carousel-slide">
                         <img src="images/Holiday2.jpg">
-                    </div>
-                    <div class="carousel-slide">
+                    </div> -->
+                    <a class="carousel-slide" href="images/Full_Res/Holiday2.jpg" data-full="images/Full_Res/Holiday2.jpg">
+                        <img src="images/Thumbnails/Holiday2.jpg" alt="Holiday 2" loading="lazy" decoding="async">
+                    </a>
+
+                    <!-- <div class="carousel-slide">
                         <img src="images/Holiday3.jpg">
-                    </div>
-                    <div class="carousel-slide">
+                    </div> -->
+                    <a class="carousel-slide" href="images/Full_Res/Holiday3.jpg" data-full="images/Full_Res/Holiday3.jpg">
+                        <img src="images/Thumbnails/Holiday3.jpg" alt="Holiday 3" loading="lazy" decoding="async">
+                    </a>
+
+                    <!-- <div class="carousel-slide">
                         <img src="images/Holiday4.jpg">
                     </div>
                     <div class="carousel-slide">
@@ -139,7 +151,7 @@
                     </div>
                     <div class="carousel-slide">
                         <img src="images/Holiday28.jpg">
-                    </div>
+                    </div> -->
                 </div>
 
                  <button class="carousel-btn next" aria-label="Next slide">></button>
@@ -280,6 +292,58 @@
         });
         });
     </script>
+
+    <!-- Lightbox Modal -->
+    <div class="lightbox" id="lightbox" aria-hidden="true">
+        <div class="lightbox-backdrop"></div>
+        <div class="lightbox-content" role="dialog" aria-modal="true">
+            <button class="lightbox-close" aria-label="Close image">x</button>
+            <img id="lightbox-img" alt="">
+        </div>
+    </div>
+
+    <!-- Lightbox JavaScript -->
+     <script>
+        const lightbox = document.getElementById("lightbox");
+        const lightboxImg = document.getElementById("lightbox-img");
+        const closeBtn = document.querySelector(".lightbox-close");
+
+        document.querySelector(".carousel").addEventListener("click", e => {
+            const slide = e.target.closest(".carousel-slide");
+            if (!slide) return;
+
+            e.preventDefault();
+
+            const fullScr = slide.dataset.full;
+            const altText = slide.querySelector("img")?.alt || "";
+
+            lightbox.src = "";
+            lightbox.alt = altText;
+
+            lightbox.classList.add("active");
+            lightbox.setAttribute("aria-hidden", "false");
+
+            // Load full-res
+            const img = new Image();
+            img.src = fullScr;
+            img.onload = () => {
+                lightbox.src = fullScr;
+            };
+        });
+
+        function closeLightbox() {
+            lightbox.classList.remove("active");
+            lightbox.setAttribute("aria-hidden", "true");
+            lightboxImg.src = "";
+        }
+
+        closeBtn.addEventListener("click", closeLightbox);
+        lightbox.querySelector(".lightbox-backdrop").addEventListener("click", closeLightbox);
+
+        document.addEventListener("keydown", e => {
+            if (e.key === "Escape") closeLightbox();
+        });
+     </script>
 
 </body>
 </html>
