@@ -217,8 +217,16 @@ body {
   justify-content: center;
   scroll-snap-align: center;
 } */
-.carousel-slide {
+/* .carousel-slide {
   display: block;
+  cursor: pointer;
+} */
+.carousel-slide {
+  flex: 0 0 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  scroll-snap-align: center;
   cursor: pointer;
 }
 
