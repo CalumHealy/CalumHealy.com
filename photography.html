@@ -419,27 +419,29 @@
         const lightboxImg = document.getElementById("lightbox-img");
         const closeBtn = document.querySelector(".lightbox-close");
 
-        document.querySelector(".carousel").addEventListener("click", e => {
-            const slide = e.target.closest(".carousel-slide");
-            if (!slide) return;
+        document.querySelectorAll(".carousel").forEach(carousel => {
+            carousel.addEventListener("click", e => {
+                const slide = e.target.closest(".carousel-slide");
+                if (!slide) return;
 
-            e.preventDefault();
+                e.preventDefault();
 
-            const fullSrc = slide.dataset.full;
-            const altText = slide.querySelector("img")?.alt || "";
+                const fullSrc = slide.dataset.full;
+                const altText = slide.querySelector("img")?.alt || "";
 
-            lightboxImg.src = "";
-            lightboxImg.alt = altText;
+                lightboxImg.src = "";
+                lightboxImg.alt = altText;
 
-            lightbox.classList.add("active");
-            lightbox.setAttribute("aria-hidden", "false");
+                lightbox.classList.add("active");
+                lightbox.setAttribute("aria-hidden", "false");
 
-            // Load full-res
-            const img = new Image();
-            img.src = fullSrc;
-            img.onload = () => {
-                lightboxImg.src = fullSrc;
-            };
+                // Load full-res
+                const img = new Image();
+                img.src = fullSrc;
+                img.onload = () => {
+                    lightboxImg.src = fullSrc;
+                };
+            });
         });
 
         function closeLightbox() {
@@ -454,7 +456,7 @@
         document.addEventListener("keydown", e => {
             if (e.key === "Escape") closeLightbox();
         });
-     </script>
+    </script>
 
 </body>
 </html>
