@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CalumHealy.com</title>
+
+    <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-logo">CALUM HEALY</div>
+
+        <!-- <button class="theme-toggle" aria-label="Toggle theme">🌙</button> -->
+
+        <button class="nav-toggle" aria-label="Toggle Menu">☰</button>
+
+        <ul class="nav-links">
+            <li><button class="theme-toggle" aria-label="Toggle theme">🌙</button></li>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="projects.html">Projects</a></li>
+            <li><a href="photography.html">Photography</a></li>
+        </ul>
+    </nav>
+
+  <!-- Hero -->
+    <main>
+        <section class="hero">
+        <h1>DIY Computer</h1>
+        <p class="hero-lead">
+            For a few years I have been very interested in logic gates and boolean logic. From building a ripple carry adder in Minecraft, to designing RAM in Logisim, and building registers on breadboards, I love designing and implementing logic circuits. I was first introduced to logic gates in secondary school, but only at a very basic level. My interest began while studying them in my Computer Architecture module in first year of college. 
+        </p>
+
+        <p class="hero-sub">
+            <!-- Text can go here -->
+        </p>
+        <p class="hero-sub">
+            <!-- Text can go here -->
+        </p>
+        </section>
+
+        <h2 class="section-title">Project Updates</h2>
+
+        <!-- Projects Preview -->
+        <section class="section">
+        <!-- <h2 class="section-title">Latest Project Updates</h2> -->
+
+        <article class="card">
+            <p>I tested having two OR gates (NAND gate combinations) outputting to the same line, feeding into a third OR gate. As you can see in the images, only the inputs of the second gate are on, but the outputs of both gates are on. This is the setup for the test. Neither input LED for the first gate is on. However, the final output LED does not turn on all the time, but only when both of its inputs are on. This suggests a voltage issue, which is also seen in the dim first output LED. The rough circuit diagram is shown (simulated in Logisim). This test will need to be redone or redesigned, as the results from this setup were inconclusive.</p>
+            <div class="carousel-wrapper">
+                <button class="carousel-btn prev" aria-label="Previous slide"><</button>
+
+                <div class="carousel">
+                    <a class="carousel-slide" href="images/BufferTest1.jpg" data-full="images/BufferTest1.jpg">
+                        <img src="images/BufferTest1.jpg" alt="Buffer Test 1" loading="lazy" decoding="async">
+                    </a>
+                    <a class="carousel-slide" href="images/BufferTest2.jpg" data-full="images/BufferTest2.jpg">
+                        <img src="images/BufferTest2.jpg" alt="Buffer Test 2" loading="lazy" decoding="async">
+                    </a>
+                    <a class="carousel-slide" href="images/BufferTestCircuitDiagram.png" data-full="images/BufferTestCircuitDiagram.png">
+                        <img src="images/BufferTestCircuitDiagram.png" alt="Buffer Test Circuit Diagram" loading="lazy" decoding="async">
+                    </a>
+                </div>
+
+                <button class="carousel-btn next" aria-label="Next slide">></button>
+            </div>
+
+            <div class="carousel-dots"></div>
+
+            <div class="card-date">23/8/2025 - 2/9/2025</div>
+        </article>
+
+        <article class="card">
+            <p>After successfully building a one bit latch on a breadboard, I have designed and ordered PCBs with the following features:</p>
+            <ul>
+                <li>Stores one bit</li>
+                <li>VCC - Voltage supply</li>
+                <li>GND - Ground</li>
+                <li>Address One - First bit of address</li>
+                <li>Address Two - Second bit of address</li>
+                <li>Data In - Single bit to be stored</li>
+                <li>Read Enable - Flag for enabling data out</li>
+                <li>Write Enable - Flag for enabling data in</li>
+                <li>Clock - Pulse updates register</li>
+                <li>Data Out - Single bit currently being stored</li>
+            </ul>
+            <img src="images/16BitRegisterPCB-Front.png" alt="16 Bit Register Module PCB Front">
+
+            <div class="card-date">8/1/2025</div>
+        </article>
+
+        <article class="card">
+            <p>I substituted each logic gate in the original 16 bit register for the NAND gate equivalent, then removed redundant gates. Built and tested using a breadboard and the CD4011 IC.</p>
+            <div class="carousel-wrapper">
+                <button class="carousel-btn prev" aria-label="Previous slide"><</button>
+
+                <div class="carousel">
+                    <a class="carousel-slide" href="images/SixteenBitRegisterNAND.png" data-full="images/SixteenBitRegisterNAND.png">
+                        <img src="images/SixteenBitRegisterNAND.png" alt="16 Bit Register NAND Gate Diagram" loading="lazy" decoding="async">
+                    </a>
+                    <a class="carousel-slide" href="images/BreadboardLatch.jpg" data-full="images/BreadboardLatch.jpg">
+                        <img src="images/BreadboardLatch.jpg" alt="Breadboard Latch" loading="lazy" decoding="async">
+                    </a>
+                    <a class="carousel-slide" href="images/BufferTestCircuitDiagram.png" data-full="images/BufferTestCircuitDiagram.png">
+                        <img src="images/BufferTestCircuitDiagram.png" alt="Breadboard Latch" loading="lazy" decoding="async">
+                    </a>
+                </div>
+
+                 <button class="carousel-btn next" aria-label="Next slide">></button>
+            </div>
+
+            <div class="carousel-dots"></div>
+
+            <div class="card-date">6/1/2025-ish</div>
+        </article>
+
+        </section>
+    </main>
+
+    <!-- Nav button JS -->
+    <script>
+        const toggle = document.querySelector('.nav-toggle');
+        const links = document.querySelector('.nav-links');
+
+        toggle.addEventListener('click', () => {
+        links.classList.toggle('show');
+        });
+    </script>
+
+    <!-- Light/Dark toggle JS -->
+    <script>
+        const themeToggle = document.querySelector('.theme-toggle');
+        const root = document.documentElement;
+
+        // Load saved theme or system preference
+        const savedTheme = localStorage.getItem('theme');
+        const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+        if (savedTheme) {
+            root.setAttribute('data-theme', savedTheme);
+        } else if (systemDark) {
+            root.setAttribute('data-theme', 'dark');
+        }
+
+        themeToggle.textContent = root.getAttribute('data-theme') === 'dark' ? '☀️' : '🌙';
+
+
+        // Toggle theme
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = root.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+
+            root.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            themeToggle.textContent = newTheme === 'dark' ? '☀️' : '🌙';
+        });
+    </script>
+
+    <!-- Carousel JS -->
+    <script>
+        document.querySelectorAll('.card').forEach(card => {
+        const carousel = card.querySelector('.carousel');
+            if (!carousel) return; // <-- guard: skip cards with no carousel
+
+            const slides = Array.from(carousel.querySelectorAll('.carousel-slide'));
+            const prevBtn = card.querySelector('.carousel-btn.prev');
+            const nextBtn = card.querySelector('.carousel-btn.next');
+
+            // Ensure dots container exists inside the same wrapper (or create it)
+            let dotsContainer = card.querySelector('.carousel-dots');
+            if (!dotsContainer) {
+                const wrapper = card.querySelector('.carousel-wrapper') || card;
+                dotsContainer = document.createElement('div');
+                dotsContainer.className = 'carousel-dots';
+                wrapper.appendChild(dotsContainer);
+            }
+
+            // If 0 or 1 slide, hide controls and dots and do nothing else
+            if (slides.length <= 1) {
+                if (prevBtn) prevBtn.style.display = 'none';
+                if (nextBtn) nextBtn.style.display = 'none';
+                dotsContainer.style.display = 'none';
+                return;
+            }
+
+            // Build dots
+            dotsContainer.innerHTML = '';
+            const dots = slides.map((_, i) => {
+                const btn = document.createElement('button');
+                btn.className = 'carousel-dot';
+                btn.setAttribute('aria-label', `Go to slide ${i + 1}`);
+                dotsContainer.appendChild(btn);
+                return btn;
+            });
+
+            let currentIndex = 0;
+
+            function update() {
+                slides.forEach((s, i) => {
+                s.style.display = i === currentIndex ? '' : 'none';
+                dots[i].classList.toggle('active', i === currentIndex);
+                });
+            }
+
+            // Initial render
+            update();
+
+            // Buttons
+            if (prevBtn) prevBtn.addEventListener('click', () => {
+                currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+                update();
+            });
+            if (nextBtn) nextBtn.addEventListener('click', () => {
+                currentIndex = (currentIndex + 1) % slides.length;
+                update();
+            });
+
+            // Dots
+            dots.forEach((dot, i) => {
+                dot.addEventListener('click', () => {
+                currentIndex = i;
+                update();
+                });
+            });
+        });
+    </script>
+
+
+    <!-- Lightbox Modal -->
+    <div class="lightbox" id="lightbox" aria-hidden="true">
+        <div class="lightbox-backdrop"></div>
+        <div class="lightbox-content" role="dialog" aria-modal="true">
+            <button class="lightbox-close" aria-label="Close image">x</button>
+            <img id="lightbox-img" alt="">
+        </div>
+    </div>
+
+    <!-- Lightbox JavaScript -->
+     <script>
+        const lightbox = document.getElementById("lightbox");
+        const lightboxImg = document.getElementById("lightbox-img");
+        const closeBtn = document.querySelector(".lightbox-close");
+
+        document.querySelectorAll(".carousel").forEach(carousel => {
+            carousel.addEventListener("click", e => {
+                const slide = e.target.closest(".carousel-slide");
+                if (!slide) return;
+
+                e.preventDefault();
+
+                const fullSrc = slide.dataset.full;
+                const altText = slide.querySelector("img")?.alt || "";
+
+                lightboxImg.src = "";
+                lightboxImg.alt = altText;
+
+                lightbox.classList.add("active");
+                lightbox.setAttribute("aria-hidden", "false");
+
+                // Load full-res
+                const img = new Image();
+                img.src = fullSrc;
+                img.onload = () => {
+                    lightboxImg.src = fullSrc;
+                };
+            });
+        });
+
+        function closeLightbox() {
+            lightbox.classList.remove("active");
+            lightbox.setAttribute("aria-hidden", "true");
+            lightboxImg.src = "";
+        }
+
+        closeBtn.addEventListener("click", closeLightbox);
+        lightbox.querySelector(".lightbox-backdrop").addEventListener("click", closeLightbox);
+
+        document.addEventListener("keydown", e => {
+            if (e.key === "Escape") closeLightbox();
+        });
+    </script>
+
+</body>
+</html>

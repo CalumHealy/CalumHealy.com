@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CalumHealy.com</title>
+
+    <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-logo">CALUM HEALY</div>
+
+        <!-- <button class="theme-toggle" aria-label="Toggle theme">🌙</button> -->
+
+        <button class="nav-toggle" aria-label="Toggle Menu">☰</button>
+
+        <ul class="nav-links">
+            <li><button class="theme-toggle" aria-label="Toggle theme">🌙</button></li>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="projects.html">Projects</a></li>
+            <li><a href="photography.html">Photography</a></li>
+        </ul>
+    </nav>
+
+  <!-- Hero -->
+    <main>
+        <section class="hero">
+        <h1>Projects</h1>
+        <p class="hero-lead">
+            My varied interest in multiple areas of computer science is reflected in my projects: From this website, to a CPU based path tracer, a breadboard computer, and more. With work, college (not anymore 😊), and multiple hobbies, it can be difficult to find time to work on each project, but I tend to work on them as I want so as to avoid burnout. There's no point in working on a personal project if I'm not interested. 
+        </p>
+
+        <p class="hero-sub">
+            <!-- Text can go here -->
+        </p>
+        <p class="hero-sub">
+            <!-- Text can go here -->
+        </p>
+        </section>
+
+        <!-- Projects Preview -->
+        <section class="section">
+        <!-- <h2 class="section-title">Latest Project Updates</h2> -->
+
+        <article class="card">
+            <h3>DIY Computer</h3>
+
+            <p>
+            I tested having two OR gates (NAND gate combinations) outputting to the same line, feeding into a third OR gate. As you can see in the images, only the inputs of the second gate are on, but the outputs of both gates are on. This is the setup for the test. Neither input LED for the first gate is on. However, the final output LED does not turn on all the time, but only when both of its inputs are on. This suggests a voltage issue, which is also seen in the dim first output LED. The rough circuit diagram is shown (simulated in Logisim). This test will need to be redone or redesigned, as the results from this setup were inconclusive.
+            </p>
+            <div class="carousel-wrapper">
+                <button class="carousel-btn prev" aria-label="Previous slide"><</button>
+
+                <div class="carousel">
+                    <div class="carousel-slide">
+                        <img src="images/BufferTest1.jpg" alt="Buffer Test 1">
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="images/BufferTest2.jpg" alt="Buffer Test 2">
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="images/BufferTestCircuitDiagram.png" alt="Buffer Test Circuit Diagram">
+                    </div>
+                </div>
+
+                 <button class="carousel-btn next" aria-label="Next slide">></button>
+            </div>
+
+            <div class="carousel-dots"></div>
+
+            <a class="button" href="diy_computer.html">Read the full story</a>
+
+            <div class="card-date">23/8/2025 - 2/9/2025</div>
+        </article>
+
+        <article class="card">
+            <h3>CPU Path Tracer</h3>
+
+            <p>
+            I am changing the structure of the config file to reflect the structure and logic of the code. SCENE now contains VERTICES, NORMALS, TRIANGLES, and MATERIALS. CAMERA will be a separate field with POSITION, FORWARD, RIGHT, and UP fields. FOV is a separate parameter at the start with WIDTH and HEIGHT.
+            </p>
+            <div class="carousel-wrapper">
+                <button class="carousel-btn prev" aria-label="Previous slide"><</button>
+
+                <div class="carousel">
+                    <div class="carousel-slide">
+                        <img src="images/CPU_Path_Tracer_Update_1_Image_1.png" alt="Before">
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="images/CPU_Path_Tracer_Update_1_Image_2.png" alt="After">
+                    </div>
+                </div>
+
+                 <button class="carousel-btn next" aria-label="Next slide">></button>
+            </div>
+
+            <div class="carousel-dots"></div>
+
+            <a class="button" href="cpu_path_tracer.html">Read the full story</a>
+
+            <div class="card-date">18/12/2025</div>
+        </article>
+
+        </section>
+    </main>
+
+    <!-- Nav button JS -->
+    <script>
+        const toggle = document.querySelector('.nav-toggle');
+        const links = document.querySelector('.nav-links');
+
+        toggle.addEventListener('click', () => {
+        links.classList.toggle('show');
+        });
+    </script>
+
+    <!-- Light/Dark toggle JS -->
+    <script>
+        const themeToggle = document.querySelector('.theme-toggle');
+        const root = document.documentElement;
+
+        // Load saved theme or system preference
+        const savedTheme = localStorage.getItem('theme');
+        const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+        if (savedTheme) {
+            root.setAttribute('data-theme', savedTheme);
+        } else if (systemDark) {
+            root.setAttribute('data-theme', 'dark');
+        }
+
+        themeToggle.textContent = root.getAttribute('data-theme') === 'dark' ? '☀️' : '🌙';
+
+
+        // Toggle theme
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = root.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+
+            root.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            themeToggle.textContent = newTheme === 'dark' ? '☀️' : '🌙';
+        });
+    </script>
+
+    <!-- Carousel JS -->
+    <script>
+        document.querySelectorAll('.card').forEach(card => {
+        const carousel = card.querySelector('.carousel');
+        const slides = Array.from(carousel.children);
+        const dotsContainer = card.querySelector('.carousel-dots');
+        const prevBtn = card.querySelector('.carousel-btn.prev');
+        const nextBtn = card.querySelector('.carousel-btn.next');
+
+        let currentIndex = 0;
+
+        // Create dots
+        slides.forEach((_, index) => {
+            const dot = document.createElement('button');
+            if (index === 0) dot.classList.add('active');
+            dot.addEventListener('click', () => scrollToSlide(index));
+            dotsContainer.appendChild(dot);
+        });
+
+        const dots = Array.from(dotsContainer.children);
+
+        function scrollToSlide(index) {
+            carousel.scrollTo({
+            left: carousel.clientWidth * index,
+            behavior: 'smooth'
+            });
+            currentIndex = index;
+            updateDots();
+        }
+
+        function updateDots() {
+            dots.forEach(dot => dot.classList.remove('active'));
+            dots[currentIndex]?.classList.add('active');
+        }
+
+        prevBtn.addEventListener('click', () => {
+            if (currentIndex > 0) scrollToSlide(currentIndex - 1);
+        });
+
+        nextBtn.addEventListener('click', () => {
+            if (currentIndex < slides.length - 1) scrollToSlide(currentIndex + 1);
+        });
+
+        carousel.addEventListener('scroll', () => {
+            const index = Math.round(carousel.scrollLeft / carousel.clientWidth);
+            if (index !== currentIndex) {
+            currentIndex = index;
+            updateDots();
+            }
+        });
+        });
+    </script>
+
+    <!-- Lightbox Modal -->
+    <div class="lightbox" id="lightbox" aria-hidden="true">
+        <div class="lightbox-backdrop"></div>
+        <div class="lightbox-content" role="dialog" aria-modal="true">
+            <button class="lightbox-close" aria-label="Close image">x</button>
+            <img id="lightbox-img" alt="">
+        </div>
+    </div>
+
+    <!-- Lightbox JavaScript -->
+     <script>
+        const lightbox = document.getElementById("lightbox");
+        const lightboxImg = document.getElementById("lightbox-img");
+        const closeBtn = document.querySelector(".lightbox-close");
+
+        document.querySelectorAll(".carousel").forEach(carousel => {
+            carousel.addEventListener("click", e => {
+                const slide = e.target.closest(".carousel-slide");
+                if (!slide) return;
+
+                e.preventDefault();
+
+                const fullSrc = slide.dataset.full;
+                const altText = slide.querySelector("img")?.alt || "";
+
+                lightboxImg.src = "";
+                lightboxImg.alt = altText;
+
+                lightbox.classList.add("active");
+                lightbox.setAttribute("aria-hidden", "false");
+
+                // Load full-res
+                const img = new Image();
+                img.src = fullSrc;
+                img.onload = () => {
+                    lightboxImg.src = fullSrc;
+                };
+            });
+        });
+
+        function closeLightbox() {
+            lightbox.classList.remove("active");
+            lightbox.setAttribute("aria-hidden", "true");
+            lightboxImg.src = "";
+        }
+
+        closeBtn.addEventListener("click", closeLightbox);
+        lightbox.querySelector(".lightbox-backdrop").addEventListener("click", closeLightbox);
+
+        document.addEventListener("keydown", e => {
+            if (e.key === "Escape") closeLightbox();
+        });
+    </script>
+
+</body>
+</html>
