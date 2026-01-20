@@ -407,3 +407,12 @@ body {
 .page_bottom_nav .button:hover {
   background: var(--page-bottom-nav-hover-bg);
 }
+
+/* ===== Text Link ===== */
+.text_link {
+  color: var(--text);
+}
+
+.text_section {
+  margin-bottom: 5rem;
+}

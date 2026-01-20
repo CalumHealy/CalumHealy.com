@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CalumHealy.com</title>
+
+    <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-logo">CALUM HEALY</div>
+
+        <!-- <button class="theme-toggle" aria-label="Toggle theme">🌙</button> -->
+
+        <button class="nav-toggle" aria-label="Toggle Menu">☰</button>
+
+        <ul class="nav-links">
+            <li><button class="theme-toggle" aria-label="Toggle theme">🌙</button></li>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="projects.html">Projects</a></li>
+            <li><a href="photography.html">Photography</a></li>
+            <li><a href="https://www.github.com/CalumHealy">GitHub</a></li>
+        </ul>
+    </nav>
+
+  <!-- Hero -->
+    <main>
+        <section class="hero">
+            <div class="text_section">
+                <h1>CPU Path Tracer</h1>
+                <p class="hero-lead">One of my favourite uses of computers is simulating the real world. Whether it is lighting, fluid simulations, rigid or soft body simulations, I find being able to recreate and represent the real world in a computer is insanely impressive, and very interesting, useful, and entertaining. My favourite aspect of this is lighting. The calculations used to simulate light in a physically accurate manner are purely logical and mathematical, which is my favourite aspect of coding. Fighting with syntax and importing modules can be a pain at times, but using just a language and its standard library to work on a logical problem, possibly incorporating lower level computing considerations, is the most enjoyable way to work with code. Just using programming as a tool to complete a logical, mathematical problem.</p>
+                <p class="hero-lead">A great example of this kind of programming is path tracing. You can define a world, a light source, and a camera, and write an algorithm which will calculate the colour of each pixel in the camera, creating an image. If the path-tracing logic is done right, the renders produced can be photo realistic, and in many cases stunning.</p>
+                <p class="hero-lead">Below is my attempt at making a CPU based path tracer.</p>
+            </div>
+            <div class="text_section">
+                <h2 class="section-title">Project News</h2>
+                <p class="hero-lead">Detailed updates on this project can be found in the Dev Log which is in the GitHub repo, linked <a class="text_link" href="https://www.github.com/CalumHealy/OpenGL_CPU_Path_Tracer">here</a>.</p>
+            </div>
+            <div class="text_section">
+                <h2 class="section-title">Renders</h2>
+                <p class="hero-lead">I have unfortunately not produced any renders yet, but that means we have lots of excitement ahead!</p>
+            </div>
+        </section>
+
+        <div class="page_bottom_nav">
+            <a class="button" href="projects.html">Projects</a>
+            <a class="button" href="index.html">Home</a>
+        </div>
+    </main>
+
+    <!-- Nav button JS -->
+    <script>
+        const toggle = document.querySelector('.nav-toggle');
+        const links = document.querySelector('.nav-links');
+
+        toggle.addEventListener('click', () => {
+        links.classList.toggle('show');
+        });
+    </script>
+
+    <!-- Light/Dark toggle JS -->
+    <script>
+        const themeToggle = document.querySelector('.theme-toggle');
+        const root = document.documentElement;
+
+        // Load saved theme or system preference
+        const savedTheme = localStorage.getItem('theme');
+        const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+        if (savedTheme) {
+            root.setAttribute('data-theme', savedTheme);
+        } else if (systemDark) {
+            root.setAttribute('data-theme', 'dark');
+        }
+
+        themeToggle.textContent = root.getAttribute('data-theme') === 'dark' ? '☀️' : '🌙';
+
+
+        // Toggle theme
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = root.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+
+            root.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            themeToggle.textContent = newTheme === 'dark' ? '☀️' : '🌙';
+        });
+    </script>
+
+    <!-- Carousel JS -->
+    <script>
+        document.querySelectorAll('.card').forEach(card => {
+        const carousel = card.querySelector('.carousel');
+            if (!carousel) return; // <-- guard: skip cards with no carousel
+
+            const slides = Array.from(carousel.querySelectorAll('.carousel-slide'));
+            const prevBtn = card.querySelector('.carousel-btn.prev');
+            const nextBtn = card.querySelector('.carousel-btn.next');
+
+            // Ensure dots container exists inside the same wrapper (or create it)
+            let dotsContainer = card.querySelector('.carousel-dots');
+            if (!dotsContainer) {
+                const wrapper = card.querySelector('.carousel-wrapper') || card;
+                dotsContainer = document.createElement('div');
+                dotsContainer.className = 'carousel-dots';
+                wrapper.appendChild(dotsContainer);
+            }
+
+            // If 0 or 1 slide, hide controls and dots and do nothing else
+            if (slides.length <= 1) {
+                if (prevBtn) prevBtn.style.display = 'none';
+                if (nextBtn) nextBtn.style.display = 'none';
+                dotsContainer.style.display = 'none';
+                return;
+            }
+
+            // Build dots
+            dotsContainer.innerHTML = '';
+            const dots = slides.map((_, i) => {
+                const btn = document.createElement('button');
+                btn.className = 'carousel-dot';
+                btn.setAttribute('aria-label', `Go to slide ${i + 1}`);
+                dotsContainer.appendChild(btn);
+                return btn;
+            });
+
+            let currentIndex = 0;
+
+            function update() {
+                slides.forEach((s, i) => {
+                s.style.display = i === currentIndex ? '' : 'none';
+                dots[i].classList.toggle('active', i === currentIndex);
+                });
+            }
+
+            // Initial render
+            update();
+
+            // Buttons
+            if (prevBtn) prevBtn.addEventListener('click', () => {
+                currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+                update();
+            });
+            if (nextBtn) nextBtn.addEventListener('click', () => {
+                currentIndex = (currentIndex + 1) % slides.length;
+                update();
+            });
+
+            // Dots
+            dots.forEach((dot, i) => {
+                dot.addEventListener('click', () => {
+                currentIndex = i;
+                update();
+                });
+            });
+        });
+    </script>
+
+
+    <!-- Lightbox Modal -->
+    <div class="lightbox" id="lightbox" aria-hidden="true">
+        <div class="lightbox-backdrop"></div>
+        <div class="lightbox-content" role="dialog" aria-modal="true">
+            <button class="lightbox-close" aria-label="Close image">x</button>
+            <img id="lightbox-img" alt="">
+        </div>
+    </div>
+
+    <!-- Lightbox JavaScript -->
+     <script>
+        const lightbox = document.getElementById("lightbox");
+        const lightboxImg = document.getElementById("lightbox-img");
+        const closeBtn = document.querySelector(".lightbox-close");
+
+        document.querySelectorAll(".carousel").forEach(carousel => {
+            carousel.addEventListener("click", e => {
+                const slide = e.target.closest(".carousel-slide");
+                if (!slide) return;
+
+                e.preventDefault();
+
+                const fullSrc = slide.dataset.full;
+                const altText = slide.querySelector("img")?.alt || "";
+
+                lightboxImg.src = "";
+                lightboxImg.alt = altText;
+
+                lightbox.classList.add("active");
+                lightbox.setAttribute("aria-hidden", "false");
+
+                // Load full-res
+                const img = new Image();
+                img.src = fullSrc;
+                img.onload = () => {
+                    lightboxImg.src = fullSrc;
+                };
+            });
+        });
+
+        function closeLightbox() {
+            lightbox.classList.remove("active");
+            lightbox.setAttribute("aria-hidden", "true");
+            lightboxImg.src = "";
+        }
+
+        closeBtn.addEventListener("click", closeLightbox);
+        lightbox.querySelector(".lightbox-backdrop").addEventListener("click", closeLightbox);
+
+        document.addEventListener("keydown", e => {
+            if (e.key === "Escape") closeLightbox();
+        });
+    </script>
+
+</body>
+</html>
